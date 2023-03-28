@@ -10,6 +10,10 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export NVM_DIR="$HOME/.nvm"
+
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,7 +81,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+	git
+	zsh-syntax-highlighting
+	zsh-autosuggestions
+	zsh-history-substring-search
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,18 +117,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias attu="ssh ll57@attu.cs.washington.edu"
 alias vim="nvim"
-alias sp22="cd ~/google\ Drive/My\ Drive/UW/Spring\ 2022/"
-alias hungry="python3 ~/Google\ Drive/My\ Drive/UW/Code/fun_stuff/donut/donut.py"
-alias pip="pip3"
-alias python="python3"
 alias mv="mv -i"
 alias cp="cp -i"
-alias mega="cd ~/Google\ Drive/My\ Drive/cryptomegaleague" 
-alias website="cd ~/Google\ Drive/My\ Drive/lefeiliu.com"
-export EDITOR="nvim"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+alias push="bash ~/GitRepos/dot_files/push.sh"
+alias gccc="gcc -Wall -std=c17 -g -o"
+alias clint="./cpplint.py --clint"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval $(thefuck --alias)
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# opam configuration
+[[ ! -r /Users/seb/.opam/opam-init/init.zsh ]] || source /Users/seb/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
